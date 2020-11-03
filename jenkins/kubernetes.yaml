@@ -28,7 +28,7 @@ spec:
             path: /var/run/docker.sock
       restartPolicy: Always
 volumeMounts:
-        - name: jenkins-home
+        - name: jenkins-home #this isn't persistent by itself so that needs to be looked at
           mountPath: /var/jenkins_home
     volumes:
       - name: jenkins-home

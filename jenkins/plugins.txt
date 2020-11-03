@@ -1,6 +1,7 @@
 configuration-as-code
 git
 github
+github-branch-source
 junit
 docker-workflow
 workflow-multibranch
