@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('build') {
             agent {
-                docker { image 'maven' }
+                docker {
+                    image 'maven'
+                    args '--net=host'
+                }
             }
             steps {
                 sh 'mvn package'
