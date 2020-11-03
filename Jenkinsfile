@@ -9,7 +9,7 @@ pipeline {
          stage('sonarqube') {
              steps {
                  withSonarQubeEnv('SonarCloud') {
-                     sh sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
+                     sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
                      sleep(10)
                  }
              }
