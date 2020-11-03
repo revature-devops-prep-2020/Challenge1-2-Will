@@ -1,0 +1,134 @@
+{
+
+	"name": "sample-web-app",
+	"id": "sample-web-appf1d39c05-8b68-449c-84b7-872b7615e795",
+	"application": "sample-web-app",
+	"appConfig": {},
+	"description": "",
+	"executionEngine": "v2",
+	"keepWaitingPipelines": false,
+	"lastModifiedBy": "anonymous",
+	"limitConcurrent": true,
+	"parallel": true,
+	"parameterConfig": [],
+    "stages": [
+        {
+          "evaluateOverrideExpressions": true,
+          "expectedArtifacts": [
+            {
+              "defaultArtifact": {
+                "customKind": true,
+                "id": "bab6b03a-4ffe-4f4f-ac56-fcf97718ed02"
+              },
+              "displayName": "DeploymentArtifact",
+              "id": "09fd68bc-f5b7-4473-9e22-63697a3a318e",
+              "matchArtifact": {
+                "artifactAccount": "embedded-artifact",
+                "customKind": false,
+                "id": "e73da4ae-2acb-4cc6-96c0-198c72aa903f",
+                "name": "sample-web-app",
+                "type": "embedded/base64"
+              },
+              "useDefaultArtifact": false,
+              "usePriorArtifact": false
+            }
+          ],
+          "inputArtifacts": [
+            {
+              "account": "s3-museum-no-slash",
+              "artifact": {
+                "artifactAccount": "s3-museum-no-slash",
+                "id": "e3ab2cfd-2f89-4809-823b-47655d7278c8",
+                "name": "sample-web-app",
+                "type": "helm/chart"
+              }
+            }
+          ],
+          "name": "Bake (Manifest)",
+          "namespace": "default",
+          "notifications": [
+            {
+              "address": "spinnaker-spam",
+              "level": "stage",
+              "message": {
+                "stage.complete": {
+                  "text": ""
+                }
+              },
+              "type": "slack",
+              "when": [
+                "stage.complete",
+                "stage.failed"
+              ]
+            }
+          ],
+          "outputName": "sample-web-app",
+          "overrides": {},
+          "refId": "1",
+          "requisiteStageRefIds": [],
+          "sendNotifications": true,
+          "templateRenderer": "HELM3",
+          "type": "bakeManifest"
+        },
+        {
+          "account": "my-k8s-account",
+          "cloudProvider": "kubernetes",
+          "manifestArtifactId": "09fd68bc-f5b7-4473-9e22-63697a3a318e",
+          "moniker": {
+            "app": "sample-web-app"
+          },
+          "name": "Deploy (Manifest)",
+          "namespaceOverride": "default",
+          "notifications": [
+            {
+              "address": "spinnaker-spam",
+              "level": "stage",
+              "type": "slack",
+              "when": [
+                "stage.complete",
+                "stage.failed"
+              ]
+            }
+          ],
+          "refId": "2",
+          "requiredArtifactIds": [
+          ],
+          "requiredArtifacts": [
+            {
+              "artifact": {
+                "artifactAccount": "docker-registry",
+                "id": "a25a7862-befb-4ee9-a04b-b0703a34579a",
+                "name": "855430746673.dkr.ecr.us-east-1.amazonaws.com/sample-web-app",
+                "reference": "855430746673.dkr.ecr.us-east-1.amazonaws.com/sample-web-app",
+                "type": "docker/image"
+              }
+            }
+          ],
+          "requisiteStageRefIds": [
+            "1"
+          ],
+          "sendNotifications": true,
+          "skipExpressionEvaluation": false,
+          "source": "artifact",
+          "trafficManagement": {
+            "enabled": true,
+            "options": {
+              "enableTraffic": true,
+              "namespace": "default",
+              "services": [],
+              "strategy": "redblack"
+            }
+          },
+          "type": "deployManifest"
+        }
+      ],
+      "triggers": [
+        {
+          "enabled": true,
+          "job": "sample-web-app/job/prod-pipe",
+          "master": "my-jenkins-master",
+          "type": "jenkins"
+        }
+      ],
+      "updateTs": "1602183591000"
+}
