@@ -1,12 +1,24 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('build') {
+            agent {
+                docker {
+                    image 'maven'
+                    args '--net=host'
+                }
+            }
             steps {
                 sh 'mvn clean package'
             }
         }
          stage('sonarqube') {
+            agent {
+                docker {
+                    image 'maven'
+                    args '--net=host'
+                }
+            }
              steps {
                  withSonarQubeEnv('SonarCloud') {
                      sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
