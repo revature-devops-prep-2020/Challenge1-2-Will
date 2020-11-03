@@ -1,0 +1,13 @@
+configuration-as-code
+git
+github
+junit
+docker-workflow
+workflow-multibranch
+pipeline-model-definition
+pipeline-stage-step
+pipeline-maven
+workflow-aggregator
+kubernetes-cli
+slack
+sonar
