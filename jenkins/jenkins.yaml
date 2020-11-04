@@ -1,95 +1,118 @@
 credentials:
-    system:
-      domainCredentials:
-      - credentials:
-        - usernamePassword:
-            id: "github-creds"
-            password: "{AQAAABAAAAAQN+JA1qMqPzf5TkGdlF9pxwY3XKEFu5PdWzbN3IsbPug=}"
-            scope: GLOBAL
-            username: "hibby96"
-  jenkins:
-    agentProtocols:
-    - "JNLP4-connect"
-    - "Ping"
-    crumbIssuer:
-      standard:
-        excludeClientIPFromCrumb: false
-    disableRememberMe: false
-    labelAtoms:
-    - name: "master"
-    markupFormatter: "plainText"
-    mode: NORMAL
-    myViewsTabBar: "standard"
-    numExecutors: 1
-    primaryView:
-      all:
-        name: "all"
-    projectNamingStrategy: "standard"
-    quietPeriod: 5
-    remotingSecurity:
-      enabled: false
-    scmCheckoutRetryCount: 0
-    slaveAgentPort: 50000
-    updateCenter:
-      sites:
-      - id: "default"
-        url: "https://updates.jenkins.io/update-center.json"
-    views:
-    - all:
-        name: "all"
-    viewsTabBar: "standard"
-  security:
-    apiToken:
-      creationOfLegacyTokenEnabled: false
-      tokenGenerationOnCreationEnabled: false
-      usageStatisticsEnabled: true
-    sSHD:
-      port: -1
-  unclassified:
-    buildDiscarders:
-      configuredBuildDiscarders:
-      - "jobBuildDiscarder"
-    defaultFolderConfiguration:
-      healthMetrics:
-      - worstChildHealthMetric:
-          recursive: true
-    fingerprints:
-      fingerprintCleanupDisabled: false
-      storage: "file"
-    gitHubConfiguration:
-      apiRateLimitChecker: ThrottleForNormalize
-    gitHubPluginConfig:
-      hookUrl: "http://a48cc18408aec4bd9a5da7c4d652c545-1831119399.us-east-1.elb.amazonaws.com:8080/github-webhook/"
-    gitSCM:
-      allowSecondFetch: false
-      createAccountBasedOnEmail: false
-      disableGitToolChooser: false
-      hideCredentials: false
-      showEntireCommitSummaryInChanges: false
-      useExistingAccountWithSameEmail: false
-    junitTestResultStorage:
-      storage: "file"
-    location:
-      adminAddress: "address not configured yet <nobody@nowhere>"
-    mailer:
-      charset: "UTF-8"
-      useSsl: false
-      useTls: false
-    pollSCM:
-      pollingThreadCount: 10
-    slackNotifier:
-      botUser: false
-      sendAsText: false
-    sonarGlobalConfiguration:
-      buildWrapperEnabled: false
-  tool:
-    git:
-      installations:
-      - home: "git"
-        name: "Default"
-    pipelineMaven:
-      triggerDownstreamUponResultAborted: false
-      triggerDownstreamUponResultFailure: false
-      triggerDownstreamUponResultNotBuilt: false
-      triggerDownstreamUponResultSuccess: true
-      triggerDownstreamUponResultUnstable: false
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "creds-dockerhub"
+          password: "{AQAAABAAAAAQ4JqfClzIbnw5YtMzvG9UtqVffFU6OSECPZLgGKH2oRM=}"
+          scope: GLOBAL
+          username: "hippy96"
+      - string:
+          id: "SONAR_TOKEN"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwBV/IYYpwjJOve4OZw2rJYSj703CJUOBLvcCn9lbGmaJDits2E6rCXq38NYj+TahiKlTYs3m4IyU9+XmZOvPlQg==}"
+      - string:
+          id: "creds-kubernetes"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAOwN7EWEYlozc2k41BuBBfMNAKEqawMZ3DBZolzXtgPMTM1GgTj9AhbXd7MgZe6yOgRtKKE4GCp6oSD9ucCFhOflj7s9Z4Wy6+SgPcrq9/XHDaUXxUA3c+xAiZcOTTYG4/1LfbVNkMbHt2mCUz4e08/Z9dA8KAYo6vkH0m69ti5k5XaXCgk6sZLRQ8sWmRvpDj9DQy8L7RldesLq0Pm4B/0qInP3xq2YohXQDMG+nS6nosDlzAm1mRebf2uWLRAGIljI/EDpO7Ybu1XjCbnAHo5yrvnBzjgha7Fr7oiFx0+NU3uIkt13o4PuFPg/r/ZoS/X/sVujOH33D8gcJTnrWzX21UNS0sF0lIfO/Rnh2TDtssV7FL7a4RDQYeVkhOWPba7AQ7oojl2ItlFCzIvftK2KvZe3ZCgKfxR7GD/91L6khLaC/LgTaLUVcJj9hyjnTHg3pu6BC7nNQE/s89W26+BgzPnMGc1ja3xTbx8HF32wWwgI50X7ozaRWBYiX6y1ISZxmcRfzOrqAgQ9ykC3pQPWRoQkgtxNnWGK/VlUViTkNwAwVB9ri8j02JlzGdMGhLl0Ngm+DwOzIPUM0ct9f5XsRQ/olj9vMJZ6ts5lULnvBa3YkC8KknYHAn1yY4JFcgKyzPs8ov8k/H7UsnVhOFsPd5NVicvu6lduEEKSgrlyMm9PERlnm9l7sDlRU/wib57ycWI0njtEpiCkAs9e1duI+5b+ogARjrQ+RCpssnn+Necres9hyV5yg8EQF/jlI8rudfj8qWf27f6jmYhL7320BPwlcKo6Ib8th8HQonsv69Y1BpQUab02iFPfcNRUSfDetgnXmk8gyqoicRcS9u18tCtLBFahewwBDjmWPCRtKlZm3G5uqLCntLmiR146HhUnvPDCroV1XToIPAeb7dLqEaSJgPkB8GpJmKKMWih17m1RKqgTIRzVyZDsQenDeEWSksypfjWMlJPdJ7L70OEuUuWjIXFGzUUdVKSEKqGWrwwf8EzQiXaDu8jryKRSacG+3JcLqh1b1ea9/d+lL/feUxFkQ4XaKDEAZLKVD8cL5m30KgZ09SYvr/tFFmL0vFHT86YmIG3pKQZT78x/DAonFLnzInONJvNkQM2OzHVcEncrUnyVFlJFW67g1xkSKLVSCLiC8nf1KbKoZIZfnjV0H5+ZfTMU6FYIsiWdUpd56N9sq38Ow1gVbopyc7lulkoekwbJNYnTwsGyEHn3w7KlnDq+H8stV61DBqSNLKzcgwT2V9TjqDyna+WM5g99hpg}"
+      - string:
+          id: "slack"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAgL1Q+UPuOGuPgwd9ttKoZNsHI4YPKx3bGKAPYHhxnzXL3t0y0FXf5IylhiYc+Ly6f}"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://a2ae41861166e4ebf9b88b6509e2caaf-1611337394.us-west-1.elb.amazonaws.com:8080/github-webhook/"
+  gitSCM:
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://a2ae41861166e4ebf9b88b6509e2caaf-1611337394.us-west-1.elb.amazonaws.com:8080/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+  slackNotifier:
+    botUser: false
+    room: "willbuilds"
+    sendAsText: false
+    teamDomain: "revaturetrain-cx22851"
+    tokenCredentialId: "slack"
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+    - credentialsId: "SONAR_TOKEN"
+      name: "sonarcloud"
+      serverUrl: "https://sonarcloud.io"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  pipelineMaven:
+    triggerDownstreamUponResultAborted: false
+    triggerDownstreamUponResultFailure: false
+    triggerDownstreamUponResultNotBuilt: false
+    triggerDownstreamUponResultSuccess: true
+    triggerDownstreamUponResultUnstable: false
