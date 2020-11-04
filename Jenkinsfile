@@ -12,39 +12,48 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        /*
         stage('sonarqube') {
             agent {
-                docker { image 'busybox' }
+                docker {
+                    image 'maven'
+                    args '--net=host'
+                }
             }
+             steps {
+                 withSonarQubeEnv('SonarCloud') {
+                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
+                    sleep(10)
+                 }       
+            }
+        stage('sonarqube gatekeeper') {
+             steps {
+                 timeout(time: 5, unit: 'MINUTES') {
+                     waitForQualityGate abortPipeline: false
+                 }
+             }
+         }
+         stage('docker build') {
             steps {
-                sh 'echo sonarqube'
-            }
-        }
-        stage('docker build') {
-            agent {
-                docker { image 'busybox' }
-            }
-            steps {
-                sh 'echo docker build'
+                sh "docker build -t hippy96/samplewebapp:${currentBuild.number} ."
+                sh "docker tag hippy96/samplewebapp:${currentBuild.number} hippy96/samplewebapp:latest"
             }
         }
         stage('docker push') {
-            agent {
-                docker { image 'busybox' }
-            }
             steps {
-                sh 'echo docker push'
+                withDockerRegistry([credentialsId: 'creds-dockerhub', url: '']) {
+                    sh "docker push hippy96/samplewebapp:${currentBuild.number}"
+                    sh 'docker push hippy96/samplewebapp:latest'
+                }
             }
         }
+        /*
         stage('app deploy') {
-            agent {
-                docker { image 'busybox' }
-            }
             steps {
-                sh 'echo kube deploy'
+                withKubeConfig([credentialsId: 'kube-creds', serverUrl: 'https://kubernetes.docker.internal:6443']) {
+                    sh 'kubectl apply -f kubernetes.yml'
+                    sh 'kubectl rollout restart deployment/sample-spring-boot'
+                }
             }
-        }
-            */
+        }*/
     }
 }
