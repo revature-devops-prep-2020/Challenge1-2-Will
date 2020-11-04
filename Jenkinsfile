@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }
+        }/*
         stage('sonarqube') {
             agent {
                 docker {
@@ -32,7 +32,7 @@ pipeline {
                      waitForQualityGate abortPipeline: false
                  }
              }
-         }
+         }*/
          stage('docker build') {
             agent {
                 docker {
@@ -63,7 +63,7 @@ pipeline {
         stage('app deploy') {
                 agent {
                     docker {
-                        image 'alpine/k8s'
+                        image 'alpine/k8s:1.13.12'
                         args '--net=host'
                     }
                 }
@@ -74,7 +74,7 @@ pipeline {
                     sh 'kubectl rollout restart deployment/sample-deployment -n test'
                     sh 'kubectl rollout restart deployment/sample-deployment -n prod'
                 }
-            }  //ADD IN SLACK AFTER THIS GETS TO WORKING
+            }
             post {
                 failure {
                     slackSend(color: 'danger', message: "Kubernetes deployment failed .")
