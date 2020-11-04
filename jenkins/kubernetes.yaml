@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins-deployment
+  name: jenkins
+  namespace: devops-tools
   labels:
     app: jenkins
 spec:
@@ -13,42 +14,58 @@ spec:
     metadata:
       labels:
         app: jenkins
+        tooltype: jenkins
     spec:
       containers:
-      - name: jenkins
-        image: hippy96/jenkins:latest
-        volumeMounts:
-            - mountPath: /var/run/docker.sock
-              name: docker-socket
-        ports:
-        - containerPort: 8080
+        - name: jenkins
+          image: hippy96/jenkins:latest
+          ports:
+            - name: http-port
+              containerPort: 8080
+            - name: jnlp-port
+              containerPort: 50000
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
+            - mountPath: /var/run 
+              name: docker-sock 
+#      imagePullSecrets:
+#        - name: regcred
       volumes:
-      - name: docker-socket
-        hostPath:
-            path: /var/run/docker.sock
-      restartPolicy: Always
-volumeMounts:
-        - name: jenkins-home #this isn't persistent by itself so that needs to be looked at
-          mountPath: /var/jenkins_home
-    volumes:
-      - name: jenkins-home
-        emptyDir: {}
-
+        - name: jenkins-home
+          persistentVolumeClaim:
+            claimName: jenkins-data
+        - name: docker-sock 
+          hostPath: 
+            path: /var/run 
 ---
-apiVersion: v1
-kind: Service
-metadata:
-        name: jenkins-service
-spec:
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: jenkins-ui
+    namespace: devops-tools
+    labels:
+      tooltype: jenkins
+  spec:
     type: LoadBalancer
     selector:
-        app: jenkins
+      app: jenkins
     ports:
-        - name: jenkins-ui
-          protocol: TCP
-          port: 8080
-          targetPort: 8080
-        - name: remote-java-api
-          protocol: TCP
-          port: 50000
-          targetPort: 50000
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080
+        name: ui
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-discovery
+  namespace: devops-tools
+spec:
+  selector:
+    app: jenkins
+  ports:
+    - protocol: TCP
+      port: 50000
+      targetPort: 50000
+      name: slaves

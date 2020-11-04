@@ -1,0 +1,95 @@
+credentials:
+    system:
+      domainCredentials:
+      - credentials:
+        - usernamePassword:
+            id: "github-creds"
+            password: "{AQAAABAAAAAQN+JA1qMqPzf5TkGdlF9pxwY3XKEFu5PdWzbN3IsbPug=}"
+            scope: GLOBAL
+            username: "hibby96"
+  jenkins:
+    agentProtocols:
+    - "JNLP4-connect"
+    - "Ping"
+    crumbIssuer:
+      standard:
+        excludeClientIPFromCrumb: false
+    disableRememberMe: false
+    labelAtoms:
+    - name: "master"
+    markupFormatter: "plainText"
+    mode: NORMAL
+    myViewsTabBar: "standard"
+    numExecutors: 1
+    primaryView:
+      all:
+        name: "all"
+    projectNamingStrategy: "standard"
+    quietPeriod: 5
+    remotingSecurity:
+      enabled: false
+    scmCheckoutRetryCount: 0
+    slaveAgentPort: 50000
+    updateCenter:
+      sites:
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
+    views:
+    - all:
+        name: "all"
+    viewsTabBar: "standard"
+  security:
+    apiToken:
+      creationOfLegacyTokenEnabled: false
+      tokenGenerationOnCreationEnabled: false
+      usageStatisticsEnabled: true
+    sSHD:
+      port: -1
+  unclassified:
+    buildDiscarders:
+      configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+    defaultFolderConfiguration:
+      healthMetrics:
+      - worstChildHealthMetric:
+          recursive: true
+    fingerprints:
+      fingerprintCleanupDisabled: false
+      storage: "file"
+    gitHubConfiguration:
+      apiRateLimitChecker: ThrottleForNormalize
+    gitHubPluginConfig:
+      hookUrl: "http://a48cc18408aec4bd9a5da7c4d652c545-1831119399.us-east-1.elb.amazonaws.com:8080/github-webhook/"
+    gitSCM:
+      allowSecondFetch: false
+      createAccountBasedOnEmail: false
+      disableGitToolChooser: false
+      hideCredentials: false
+      showEntireCommitSummaryInChanges: false
+      useExistingAccountWithSameEmail: false
+    junitTestResultStorage:
+      storage: "file"
+    location:
+      adminAddress: "address not configured yet <nobody@nowhere>"
+    mailer:
+      charset: "UTF-8"
+      useSsl: false
+      useTls: false
+    pollSCM:
+      pollingThreadCount: 10
+    slackNotifier:
+      botUser: false
+      sendAsText: false
+    sonarGlobalConfiguration:
+      buildWrapperEnabled: false
+  tool:
+    git:
+      installations:
+      - home: "git"
+        name: "Default"
+    pipelineMaven:
+      triggerDownstreamUponResultAborted: false
+      triggerDownstreamUponResultFailure: false
+      triggerDownstreamUponResultNotBuilt: false
+      triggerDownstreamUponResultSuccess: true
+      triggerDownstreamUponResultUnstable: false
