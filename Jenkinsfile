@@ -61,13 +61,13 @@ pipeline {
             }
         }
         stage('app deploy') {
-            steps {
                 agent {
                     docker {
                         image 'alxl/kubectl'
                         args '--net=host'
+                    }
                 }
-            }
+            steps {
                 withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: 'https://kubernetes.default.svc.cluster.local']) {
                     sh 'kubectl apply -f deployment.yaml -n test'
                     sh 'kubectl apply -f deployment.yaml -n prod'
