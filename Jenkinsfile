@@ -34,12 +34,25 @@ pipeline {
              }
          }
          stage('docker build') {
+            agent {
+                docker {
+                    image 'docker'
+                    args '--net=host'
+                }
+            }
             steps {
                 sh "docker build -t hippy96/samplewebapp:${currentBuild.number} ."
                 sh "docker tag hippy96/samplewebapp:${currentBuild.number} hippy96/samplewebapp:latest"
             }
         }
         stage('docker push') {
+            agent {
+                docker {
+                    image 'docker'
+                    args '--net=host'
+                }
+            }
+
             steps {
                 withDockerRegistry([credentialsId: 'creds-dockerhub', url: '']) {
                     sh "docker push hippy96/samplewebapp:${currentBuild.number}"
