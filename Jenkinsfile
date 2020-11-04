@@ -19,13 +19,13 @@ pipeline {
                     args '--net=host'
                 }
             }
-        }
              steps {
                  withSonarQubeEnv('SonarCloud') {
                     sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
                     sleep(10)
                  }       
             }
+        }
         stage('sonarqube gatekeeper') {
              steps {
                  timeout(time: 5, unit: 'MINUTES') {
