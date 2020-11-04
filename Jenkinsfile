@@ -63,7 +63,7 @@ pipeline {
         stage('app deploy') {
                 agent {
                     docker {
-                        image 'alpine/k8s:1.13.12'
+                        image 'reblank/kubectl_agent'
                         args '--net=host'
                     }
                 }
