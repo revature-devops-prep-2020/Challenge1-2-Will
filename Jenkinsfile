@@ -60,14 +60,19 @@ pipeline {
                 }
             }
         }
-        /*
         stage('app deploy') {
             steps {
-                withKubeConfig([credentialsId: 'kube-creds', serverUrl: 'https://kubernetes.docker.internal:6443']) {
+                agent {
+                    docker {
+                        image 'alxl/kubectl'
+                        args '--net=host'
+                }
+            }
+                withKubeConfig([credentialsId: 'kube-creds', serverUrl: 'https://kubernetes.default.svc.cluster.local']) {
                     sh 'kubectl apply -f kubernetes.yml'
                     sh 'kubectl rollout restart deployment/sample-spring-boot'
                 }
-            }
-        }*/
+            }  //ADD IN SLACK AFTER THIS GETS TO WORKING
+        }
     }
 }
