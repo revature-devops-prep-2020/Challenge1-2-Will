@@ -63,12 +63,12 @@ pipeline {
         stage('app deploy') {
                 agent {
                     docker {
-                        image 'd3fk/kubectl'
+                        image 'alpine/k8s'
                         args '--net=host'
                     }
                 }
             steps {
-                withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: 'https://kubernetes.default.svc.cluster.local']) {
+                withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: 'https://E4002E13B45A1FBD72B244572F837574.gr7.us-west-1.eks.amazonaws.com']) {
                     sh 'kubectl apply -f deployment.yaml -n test'
                     sh 'kubectl apply -f deployment.yaml -n prod'
                     sh 'kubectl rollout restart deployment/sample-deployment -n test'
