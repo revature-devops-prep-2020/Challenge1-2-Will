@@ -75,6 +75,16 @@ pipeline {
                     sh 'kubectl rollout restart deployment/sample-deployment -n prod'
                 }
             }  //ADD IN SLACK AFTER THIS GETS TO WORKING
+            post {
+                failure {
+                    slackSend(color: 'danger', message: "Kubernetes deployment failed .")
+                }
+            }
+        }
+    }
+    post {
+        success {
+            slackSend(color: 'good', message: "Application has been built and tested and is now deployed.")
         }
     }
 }
