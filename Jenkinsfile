@@ -68,9 +68,11 @@ pipeline {
                         args '--net=host'
                 }
             }
-                withKubeConfig([credentialsId: 'kube-creds', serverUrl: 'https://kubernetes.default.svc.cluster.local']) {
-                    sh 'kubectl apply -f kubernetes.yml'
-                    sh 'kubectl rollout restart deployment/sample-spring-boot'
+                withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: 'https://kubernetes.default.svc.cluster.local']) {
+                    sh 'kubectl apply -f deployment.yaml -n test'
+                    sh 'kubectl apply -f deployment.yaml -n prod'
+                    sh 'kubectl rollout restart deployment/sample-deployment -n test'
+                    sh 'kubectl rollout restart deployment/sample-deployment -n prod'
                 }
             }  //ADD IN SLACK AFTER THIS GETS TO WORKING
         }
