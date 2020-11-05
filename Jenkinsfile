@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }
+        }/*
         stage('sonarqube') {
             agent {
                 docker {
@@ -36,7 +36,7 @@ pipeline {
                      waitForQualityGate abortPipeline: false
                  }
              }
-         }
+         } */
          stage('docker build') {
             agent {
                 docker {
@@ -52,7 +52,7 @@ pipeline {
         stage('Scan image') {
             agent {
                 docker {
-                    image 'trivy'
+                    image 'aquasec/trivy'
                     args '--net=host'
                 }
             }
