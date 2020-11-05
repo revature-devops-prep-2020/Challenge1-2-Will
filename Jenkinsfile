@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }/*
+        }
         stage('sonarqube') {
             agent {
                 docker {
@@ -36,7 +36,7 @@ pipeline {
                      waitForQualityGate abortPipeline: false
                  }
              }
-         }*/
+         }
          stage('docker build') {
             agent {
                 docker {
