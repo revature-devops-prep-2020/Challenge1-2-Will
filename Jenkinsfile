@@ -1,5 +1,5 @@
 def repoName = "hippy96/samplewebapp"  //The repo the app will be pushed to
-def kubeMaster = "https://kubernetes.default.svc.cluster.local" //"https://3BE82A4FE03053098484F4C2AA933DB5.gr7.us-east-2.eks.amazonaws.com"  //cluster server URL
+def kubeMaster = "https://3BE82A4FE03053098484F4C2AA933DB5.gr7.us-east-2.eks.amazonaws.com"  //cluster server URL
 def kubectlImg = "reblank/kubectl_agent" //The docker img repo that has the kubectl CLI
 
 pipeline {
