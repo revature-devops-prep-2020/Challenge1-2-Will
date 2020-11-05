@@ -1,4 +1,4 @@
-FROM jenkins/jenkins
+FROM jenkins/jenkins:lts-jdk11
 
 ENV JENKINS_HOME /var/jenkins_home
 
