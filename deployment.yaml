@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-spring-deployment
+  labels:
+    app: sample-spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-spring
+  template:
+    metadata:
+      labels:
+        app: sample-spring
+    spec:
+      containers:
+      - name: sample-spring
+        image: hippy96/samplespring:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-spring-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: sample-spring
+  ports:
+  - name: web-interface
+    protocol: TCP
+    port: 80
+    targetPort: 80

@@ -27,6 +27,11 @@ import javax.validation.constraints.NotEmpty;
 @MappedSuperclass
 public class Person extends BaseEntity {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "first_name")
 	@NotEmpty
 	private String firstName;
