@@ -62,7 +62,6 @@ metadata:
   name: jenkins-discovery
   namespace: devops-tools
 spec:
-  type: LoadBalancer
   selector:
     app: jenkins
   ports:

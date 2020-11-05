@@ -4,21 +4,21 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "creds-dockerhub"
-          password: "{AQAAABAAAAAQ4JqfClzIbnw5YtMzvG9UtqVffFU6OSECPZLgGKH2oRM=}"
+          password: "{AQAAABAAAABAV1LoYgTEA0tlPDo6qOR5UuYC82HVkTSXL/hi8umHJzkC41zBZ3ezwDmx395M71IRPQyBirl/lDklOqIThCp+iClEBMaz/Ae3HLyg3mF7gGs=}"
           scope: GLOBAL
           username: "hippy96"
       - string:
           id: "SONAR_TOKEN"
           scope: GLOBAL
-          secret: "{AQAAABAAAAAwBV/IYYpwjJOve4OZw2rJYSj703CJUOBLvcCn9lbGmaJDits2E6rCXq38NYj+TahiKlTYs3m4IyU9+XmZOvPlQg==}"
+          secret: "{AQAAABAAAABwCNDcduBZozYhf4lUh4HYUVBZJVc6JvrXPKxy93HygczvxCXUjv8SH6/6YqbM0m4r9tfQZhKRSHZjgIIY9q4E8w7p/ufuC0eyx/Npb29tw/Fu/ttgnESeoL9CI7GtKJL0+M7ZnqVZvi/beQiiC4hUQVSQtVeTzrsb9rw+s1YnWrg=}"
       - string:
           id: "creds-kubernetes"
           scope: GLOBAL
-          secret: "{AQAAABAAAAOwN7EWEYlozc2k41BuBBfMNAKEqawMZ3DBZolzXtgPMTM1GgTj9AhbXd7MgZe6yOgRtKKE4GCp6oSD9ucCFhOflj7s9Z4Wy6+SgPcrq9/XHDaUXxUA3c+xAiZcOTTYG4/1LfbVNkMbHt2mCUz4e08/Z9dA8KAYo6vkH0m69ti5k5XaXCgk6sZLRQ8sWmRvpDj9DQy8L7RldesLq0Pm4B/0qInP3xq2YohXQDMG+nS6nosDlzAm1mRebf2uWLRAGIljI/EDpO7Ybu1XjCbnAHo5yrvnBzjgha7Fr7oiFx0+NU3uIkt13o4PuFPg/r/ZoS/X/sVujOH33D8gcJTnrWzX21UNS0sF0lIfO/Rnh2TDtssV7FL7a4RDQYeVkhOWPba7AQ7oojl2ItlFCzIvftK2KvZe3ZCgKfxR7GD/91L6khLaC/LgTaLUVcJj9hyjnTHg3pu6BC7nNQE/s89W26+BgzPnMGc1ja3xTbx8HF32wWwgI50X7ozaRWBYiX6y1ISZxmcRfzOrqAgQ9ykC3pQPWRoQkgtxNnWGK/VlUViTkNwAwVB9ri8j02JlzGdMGhLl0Ngm+DwOzIPUM0ct9f5XsRQ/olj9vMJZ6ts5lULnvBa3YkC8KknYHAn1yY4JFcgKyzPs8ov8k/H7UsnVhOFsPd5NVicvu6lduEEKSgrlyMm9PERlnm9l7sDlRU/wib57ycWI0njtEpiCkAs9e1duI+5b+ogARjrQ+RCpssnn+Necres9hyV5yg8EQF/jlI8rudfj8qWf27f6jmYhL7320BPwlcKo6Ib8th8HQonsv69Y1BpQUab02iFPfcNRUSfDetgnXmk8gyqoicRcS9u18tCtLBFahewwBDjmWPCRtKlZm3G5uqLCntLmiR146HhUnvPDCroV1XToIPAeb7dLqEaSJgPkB8GpJmKKMWih17m1RKqgTIRzVyZDsQenDeEWSksypfjWMlJPdJ7L70OEuUuWjIXFGzUUdVKSEKqGWrwwf8EzQiXaDu8jryKRSacG+3JcLqh1b1ea9/d+lL/feUxFkQ4XaKDEAZLKVD8cL5m30KgZ09SYvr/tFFmL0vFHT86YmIG3pKQZT78x/DAonFLnzInONJvNkQM2OzHVcEncrUnyVFlJFW67g1xkSKLVSCLiC8nf1KbKoZIZfnjV0H5+ZfTMU6FYIsiWdUpd56N9sq38Ow1gVbopyc7lulkoekwbJNYnTwsGyEHn3w7KlnDq+H8stV61DBqSNLKzcgwT2V9TjqDyna+WM5g99hpg}"
+          secret: "{AQAAABAAAAOwz6WcvyeGho995a12s3PV+KHPf2+4vfCIJS/a+LEGBR1COqKS9Blsvfi22+o42npyeDQXeIznPkCPFl1HzRITI73Z6caS9t2lqb/CZkEbZDCuNUEV+bAKiXAoETFQUvUxuUZY6Sjm0C+Lo0Q3beoKmDCVT7GrWln5j+D/qmikLRyQkSy1aM2FWxM18uAMuAJaZfwdqVjObbIguxavwJwwrQrX+91/10M0qJl84VcuXTVdjRT9n4fP2ZlpnSsFigNTM2Pn4kyAe2f13P9YHsvewJG7YA+L/oq86dZXD3aK3hCGzy5B5sRPeufYtqhICKitzWpWth11SJ0UfH1wHo6O4Cw2eQ0hJ68ww9WLib5gxYkq1OPKDs4A700jptSz06+InalX1OpBThs0mDTnrnaJx/cqO5Flxr3FDTYjLN+jwqVii01fqg/nXiVAFzSX7+Pkuq0R67+6j43zRdIexsgflm/3/uxpJosriH8PKcxLDbmw1OQqGamS4ePOmUE0HEhF2KxBLEdqm7VgamvfYNd6Gipai47mVXW3SGhOXdeWeGtyyfQKOa9usOeLLKEfUMPHQCnCPIdkwX51MPLyDbmNWU+lgJ7vd66KPkUnJ00/dvGSjGAU5Rdl6bqXnQEXsG3LEs+dQONPHPRWGPCCn/lhLKTvWY4HQVN7OhfwSdcG6Odj7x5Z27McPybABmG+oOiv53R9y3WFvWqDv3KbsbM0VzgG6m7yCMv1kN/eyP9SHeIRBOaU+L1p5OvxqHUMZHoKD7+8sSd9ymrENL7qxy6iSH3IrBBzlyLznESn9Rv16jrkDT/lMUjJYppPw/YVL9Z8YqnmpiC3k7o/kPelwRQ/EbM+WsYOpkXtznagyoYNv6WT+oAIUFW/IBL6hZ54INtCghzbvqHXcwPKqZzOSVIIo7+pgtYwmrUjxKSILZjkA7e+E0DP8LngYkQI9A0k/YVfYgs7WoYPvNXkwFg2fnW8zmWNj/mSJLlI7390P3NHtho1m3QdwyNYwb6vO9wlz0UPkYFx92u7bd8bvFE99sRse66XGfSJtLnrLog94CrGnF9o3ggPoRsdyY6K+GGP3izs3I5DreHl287W2h1H/WpqtR8Gs4SVcyjQt6K/3HhLB+uitb9oKuvxkekN8pSoTNOvRl2MBDPEBcpNoY0sYeTdhjon/kt1gFDRmsAbPzdix2bH+J240DVUy3rcXJxjPCAgXANeHx1duJaxKh/JwmQ8Kp9QFv+k/68gJpmcnvkROdmNyiW6dAG0z81I/ivZaRBN}"
       - string:
           id: "slack"
           scope: GLOBAL
-          secret: "{AQAAABAAAAAgL1Q+UPuOGuPgwd9ttKoZNsHI4YPKx3bGKAPYHhxnzXL3t0y0FXf5IylhiYc+Ly6f}"
+          secret: "{AQAAABAAAABQ3S7IeBfGZIDTNcqSG/HRnZzEt8kT++VqfVtIHAsanUbhGWNpUjvSU+VxBAo6FnKE2PWXCIYXEYo9h58Ldgse2vaY4KLJJ1IKECk80LB6Yg+/XcSplB+V2ZMJT+RiEtXS}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
