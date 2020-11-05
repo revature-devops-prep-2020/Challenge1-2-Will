@@ -39,22 +39,22 @@ spec:
           hostPath: 
             path: /var/run 
 ---
-  kind: Service
-  apiVersion: v1
-  metadata:
-    name: jenkins-ui
-    namespace: devops-tools
-    labels:
-      tooltype: jenkins
-  spec:
-    type: LoadBalancer
-    selector:
-      app: jenkins
-    ports:
-      - protocol: TCP
-        port: 8080
-        targetPort: 8080
-        name: ui
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-ui
+  namespace: devops-tools
+  labels:
+    tooltype: jenkins
+spec:
+  type: LoadBalancer
+  selector:
+    app: jenkins
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: ui
 ---
 kind: Service
 apiVersion: v1
@@ -62,6 +62,7 @@ metadata:
   name: jenkins-discovery
   namespace: devops-tools
 spec:
+  type: LoadBalancer
   selector:
     app: jenkins
   ports:

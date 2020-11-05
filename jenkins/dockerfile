@@ -1,12 +1,24 @@
-FROM jenkins/jenkins
+FROM jenkins/jenkins:jdk11
 
-#COPY jenkins.yaml /usr/share/jenkins/ref/jenkins.yaml
-ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 ENV JENKINS_HOME /var/jenkins_home
-#ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/
+
+#Update the username and password
+ENV JENKINS_USER admin
+ENV JENKINS_PASS admin
+
+
+ARG JAVA_OPTS
+ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
+
+# Jenkins runs all grovy files from init.groovy.d dir
+# use this for creating default admin user
+COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+
+
+
+# Get docker cli
 ENV DOCKERVERSION=18.03.1-ce
 USER root
-# Get docker cli
 RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \
   && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 \
                  -C /usr/local/bin docker/docker \
@@ -20,6 +32,12 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 #RUN groupadd docker \
 #  && usermod -aG docker jenkins \
 #  && newgrp docker HAVE NOT TRIED THIS ONE YET
+
+# trivy
+RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/
+COPY jenkins.yaml /usr/share/jenkins/ref/jenkins.yaml
 
 #USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
