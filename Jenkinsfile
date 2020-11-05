@@ -47,6 +47,7 @@ pipeline {
             steps {
                 sh "docker build -t ${repoName}:${currentBuild.number} ."
                 sh "docker tag ${repoName}:${currentBuild.number} ${repoName}:latest"
+                sh "echo ${projectName}"
             }
         }
         stage('Scan image') {
