@@ -49,6 +49,24 @@ pipeline {
                 sh "docker tag ${repoName}:${currentBuild.number} ${repoName}:latest"
             }
         }
+        stage('Scan image') {
+            agent {
+                docker {
+                    image 'trivy'
+                    args '--net=host'
+                }
+            }
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "trivy image --exit-code 1 ${repoName}:${currentBuild.number}"
+                }
+            }
+            post {
+                failure {
+                    slackSend(color: 'warning', message: "This project has vulnerabilities in its image.")
+                }
+            }
+        }
         stage('docker push') {
             agent {
                 docker {
