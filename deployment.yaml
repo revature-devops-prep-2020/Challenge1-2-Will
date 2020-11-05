@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample
+  name: sample-webapp-service
 spec:
   type: LoadBalancer
   selector:

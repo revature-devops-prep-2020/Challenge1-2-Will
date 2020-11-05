@@ -1,3 +1,7 @@
+def repoName = "hippy96/samplewebapp"  //The repo the app will be pushed to
+def kubeMaster = "https://3BE82A4FE03053098484F4C2AA933DB5.gr7.us-east-2.eks.amazonaws.com"  //cluster server URL
+def kubectlImg = "reblank/kubectl_agent" //The docker img repo that has the kubectl CLI
+
 pipeline {
     agent none
     stages {
@@ -5,7 +9,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven'
-                    args '--net=host'
+                    args '-v $HOME/.m2:/root/.m2 --net=host'  //cache downloaded dependencies to speed up subsequent builds
                 }
             }
             steps {
@@ -41,8 +45,8 @@ pipeline {
                 }
             }
             steps {
-                sh "docker build -t hippy96/samplewebapp:${currentBuild.number} ."
-                sh "docker tag hippy96/samplewebapp:${currentBuild.number} hippy96/samplewebapp:latest"
+                sh "docker build -t ${repoName}:${currentBuild.number} ."
+                sh "docker tag ${repoName}:${currentBuild.number} ${repoName}:latest"
             }
         }
         stage('docker push') {
@@ -55,36 +59,36 @@ pipeline {
 
             steps {
                 withDockerRegistry([credentialsId: 'creds-dockerhub', url: '']) {
-                    sh "docker push hippy96/samplewebapp:${currentBuild.number}"
-                    sh 'docker push hippy96/samplewebapp:latest'
+                    sh "docker push ${repoName}:${currentBuild.number}"
+                    sh "docker push ${repoName}:latest"
                 }
             }
         }
         stage('app deploy') {
                 agent {
                     docker {
-                        image 'reblank/kubectl_agent'
+                        image "${kubectlImg}"
                         args '--net=host'
                     }
                 }
             steps {
-                withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: 'https://E4002E13B45A1FBD72B244572F837574.gr7.us-west-1.eks.amazonaws.com']) {
+                withKubeConfig([credentialsId: 'creds-kubernetes', serverUrl: "${kubeMaster}"]) {
                     sh 'kubectl apply -f deployment.yaml -n test'
                     sh 'kubectl apply -f deployment.yaml -n prod'
                     sh 'kubectl rollout restart deployment/sample-deployment -n test'
-                    sh 'kubectl rollout restart deployment/sample-deployment -n prod'
+                    sh 'kubectl rollout restart deployment/sample-deployment -n prod'  //The deployment name should be parameterized
                 }
             }
             post {
                 failure {
-                    slackSend(color: 'danger', message: "Kubernetes deployment failed .")
+                    slackSend(color: 'danger', message: "Kubernetes deployment failed for app ${currentBuild.displayName}.")
                 }
             }
         }
     }
     post {
         success {
-            slackSend(color: 'good', message: "Application has been built and tested and is now deployed.")
+            slackSend(color: 'good', message: "Application ${currentBuild.displayName} has been built and tested and is now deployed.")
         }
     }
 }
