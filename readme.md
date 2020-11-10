@@ -1,7 +1,7 @@
 # Challenges 1 and 2
 
 ## Description
-This project will be a CI/CD pipeline using Jenkins and AWS EKS.  The master branch contains all the files needed to spin up Jenkins and the other branches will contain the sample applications sent through the pipeline.  
+This project will be a CI/CD pipeline using Jenkins and AWS EKS.  The master branch contains all the files needed to spin up Jenkins and the other branches will contain the sample applications sent through the pipeline.  Please note the "dev" branch's application has not been successfully pushed through the pipeline, though the "dev2" branch's application has been tested extensively and is working.
 
 ## Creation of the EKS cluster via commandline
 There are various ways to create an EKS cluster from the commandline.  The aws CLI commands support it, but I have found it to be much easier to use the eksctl commands.
