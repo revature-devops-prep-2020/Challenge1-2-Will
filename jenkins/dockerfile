@@ -34,7 +34,7 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 #  && newgrp docker HAVE NOT TRIED THIS ONE YET
 
 # trivy
-RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
+# RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
 
 ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/
 COPY jenkins.yaml /usr/share/jenkins/ref/jenkins.yaml
